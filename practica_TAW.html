@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<style>
+		#fechaa{text-align: left;}
+	</style>
+
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+
+<body>
+
+<div class="jumbotron text-center">
+    <h3>Dr. Raúl Carlos Ruiz Balboa</h3>
+    <h6>Especialista en ortodoncia</h6>
+    <h6>Universidad Autónoma de Nuevo León</h6>
+    <h7>Ced. Prof. 5992534</h7>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+
+		<div id="fechaa">
+			<div class=" col-md-6 col-lg-6">
+				<label for="fecha_1" class="fas fa-calendar-alt"> Fecha: </label>
+				<input type="fecha" class="form-control" id="fecha_1" placeholder="">
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<label for="nombre_paciente" class="fas fa-user-alt"> Nombre del paciente: </label>
+			<input type="nombre" class="form-control" id="nombre_paciente" placeholder="">
+		</div>
+
+		<div class=" col-md-2 col-lg-2">
+			<label for="edad_1" class="fas fa-portrait"> Edad: </label>
+			<input type="edad" class="form-control" id="edad_1" placeholder="">
+		</div>
+
+		<div class=" col-md-6 col-lg-6">
+			<label for="fecha_nacimiento" class="fas fa-calendar-alt"> Fecha de nacimiento: </label>
+			<input type="fecha_nac" class="form-control" id="fecha_nacimiento" placeholder="">
+		</div>
+
+		<div class=" col-md-4 col-lg-4">
+			<label for="direccion_1" class="fas fa-thumbtack"> Dirección: </label>
+			<input type="direccion" class="form-control" id="direccion_1" placeholder="">
+		</div>
+
+		<div class=" col-md-4 col-lg-4">
+			<label for="ocupacion_1" class="fas fa-id-card-alt"> Ocupación: </label>
+			<input type="ocupacion" class="form-control" id="ocupacion_1" placeholder="">
+		</div>
+
+		<div class=" col-md-4 col-lg-4">
+			<label for="telefono_1" class="fas fa-phone-square-alt"> Teléfono: </label>
+			<input type="tel" class="form-control" id="telefono_1" placeholder="">
+		</div>
+
+		<div class=" col-md-4 col-lg-4">
+			<label for="celular_1" class="fas fa-mobile-alt"> Celular: </label>
+			<input type="cel" class="form-control" id="celular_1" placeholder="">
+		</div>
+
+		<div class=" col-md-8 col-lg-8">
+			<label for="nombre_padre" class="fas fa-user-alt"> Nombre del padre: </label>
+			<input type="nom_pa" class="form-control" id="nombre_padre" placeholder="">
+		</div>
+
+		<div class=" col-md-4 col-lg-4">
+			<label for="ocupacion_padre" class="fas fa-id-card-alt"> Ocupación: </label>
+			<input type="ocu_padre" class="form-control" id="ocupacion_padre" placeholder="">
+		</div>
+
+		<div class=" col-md-8 col-lg-8">
+			<label for="nombre_madre" class="fas fa-user-alt"> Nombre de la madre: </label>
+			<input type="nom_ma" class="form-control" id="nombre_madre" placeholder="">
+		</div>
+
+		<div class=" col-md-4 col-lg-4">
+			<label for="ocupacion_madre" class="fas fa-id-card-alt"> Ocupación: </label>
+			<input type="ocu_madre" class="form-control" id="ocupacion_madre" placeholder="">
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<label for="recomen_1" class="fas fa-address-card"> Fui recomendado por: </label>
+			<input type="reco" class="form-control" id="recomen_1" placeholder="">
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>1.- ¿Es la primera visita al dentista?
+					<input type="checkbox"> Sí
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>2.- ¿Padece actualmente alguna enfermedad?
+					<input type="checkbox"> Sí, <input class="form-control">
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>3.- ¿Está tomando algún medicamento actualmente?
+					<input type="checkbox"> Sí,
+					<input class="form-control">
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>4.- ¿Es alérgico a algún medicamento?
+					<input type="checkbox"> Sí,
+					<input class="form-control">
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>5.- ¿Respira por la boca?
+					<input type="checkbox"> Sí
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>6.- ¿Le sangran las encías con facilidad?
+					<input type="checkbox"> Sí
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>7.- ¿Se chupa el dedo?
+					<input type="checkbox"> Sí
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>8.- ¿Se muerde las uñas?
+					<input type="checkbox"> Sí
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="form_group">
+				<label for="motivo_1">Motivo de la consulta: </label>
+				<input type="motivo" class="form-control input-lg" id="motivo_1" placeholder="">
+			</div>
+		</div>
+
+		<div class="container text-center">
+			<strong><label> Facial </label></strong>
+		</div>
+
+		<div class=" col-md-6 col-lg-6">
+			<div class="checkbox">
+				<label>Simetría:
+					<input type="checkbox"> Sí
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-6 col-lg-6">
+			<div class="checkbox">
+				<label>Perfil:
+					<input type="checkbox"> Cóncavo
+					<input type="checkbox"> Convexo
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="checkbox">
+				<label>Tipo facil:
+					<input type="checkbox"> Normofacial
+					<input type="checkbox"> Braquifacial
+					<input type="checkbox"> Dolicofacial
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-6 col-lg-6">
+			<strong><label>ATM</label></strong>
+			<div class="checkbox">
+				<label>Dolor:
+					<input type="checkbox"> Sí
+					<input class="form-control">
+					<input type="checkbox"> No
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-6 col-lg-6">
+			<strong><label>Intraoral</label><br></strong>
+			<label for="perio_1">Periodonto: </label>
+			<input type="peri" class="form-control" id="perio_1" placeholder="">
+
+			<label for="freno_1">Frenillos: </label>
+			<input type="frenos" class="form-control" id="freno_1" placeholder="">
+
+			<label for="pala_1">Paladar: </label>
+			<input type="pala" class="form-control" id="pala_1" placeholder="">
+		</div>
+
+		<div class="container text-center">
+			<strong><label> Odontograma </label></strong>
+		</div>
+
+		<div class=" col-md-6 col-lg-6">
+			<label>Relación oclusal</label>
+			<div class="checkbox">
+				<label>Molar:
+					<input type="checkbox"> Derecha
+					<input type="checkbox"> Izquierda
+				</label>
+			</div>
+
+			<div class="checkbox">
+				<label>Canina:
+					<input type="checkbox"> Derecha
+					<input type="checkbox"> Izquierda
+				</label>
+			</div>
+
+			<div class="checkbox">
+				<label>Mordida cruzada:
+					<input type="checkbox"> Anterior
+					<input type="checkbox"> Posterior
+					<input class="form-control">
+				</label>
+			</div>
+		</div>
+
+		<div class=" col-md-6 col-lg-6">
+			<label for="sobre_hor">Sobremordidad horizontal: </label>
+			<input type="s_h" class="form-control" id="sobre_hor" placeholder="mm">
+
+			<label for="sobre_ver">Sobremordidad vertical: </label>
+			<input type="s_v" class="form-control" id="sobre_ver" placeholder="%">
+
+			<label for="lineas_med">Líneas medias: </label>
+			<input type="lineas" class="form-control" id="lineas_med" placeholder="">
+
+			<label>Apiñanamiento: </label><br>
+
+			<label for="superior_1">Superior: </label>
+			<input type="sup" class="form-control" id="superior_1" placeholder="mm">
+
+			<label for="inferior_1">Inferior: </label>
+			<input type="inf" class="form-control" id="inferior_1" placeholder="mm">
+
+			<label>Forma de arcadas: </label><br>
+
+			<label for="superior_2">Superior: </label>
+			<input type="supp" class="form-control" id="superior_2" placeholder="">
+
+			<label for="inferior_2">Inferior: </label>
+			<input type="inff" class="form-control" id="inferior_2" placeholder="">
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<label>Curva de Spee: </label><br>
+
+			<label for="curva_der">Derecha: </label>
+			<input type="curva" class="form-control" id="curva_der" placeholder="mm">
+
+			<label for="curva_izq">Izquierda: </label>
+			<input type="curva" class="form-control" id="curva_izq" placeholder="mm">
+		</div>
+
+		<div class=" col-md-12 col-lg-12">
+			<div class="form_group">
+				<label for="observaciones">Observaciones: </label>
+				<input type="obvs" class="form-control input-lg" id="observaciones" placeholder="">
+			</div>
+		</div>
+
+	</div>
+</div>
+</body>
+</html>
