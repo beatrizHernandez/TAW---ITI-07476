@@ -15,7 +15,7 @@
 			$respuesta = Paginas::enlacesPaginasModel($enlaces);
 			include $respuesta;
 		}
-		//Método para registro de usuarios
+		//Método del controlador para registro de usuarios
 		public function resgistroUsuarioController() {
 			//Almaceno en un array los valores de la vista de registro
 			$datosController = array("usuario" => $_POST["usuarioResgitro"], "password" => $_POST["passwordResgistro"], "email" => $_POST["emailRegistro"]);
