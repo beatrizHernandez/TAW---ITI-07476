@@ -24,5 +24,29 @@
 			//Cerrar las funciones de la sentencia de PDO
 			$stmt -> close();
 		}
+
+		//Método INGRESO USUARIO
+		public function ingresoUsuarioModel($datosModel, $tabla) {
+			//Preparamos el PDO
+			$stmt = Conexion::conectar() -> prepare("SELECT usuario, contraseña FROM $tabla WHERE usuario = :usuario");
+			//Recibimos el valor usuario desde eñ array almacenado del controlador
+			$stmt -> bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
+			//ejecutamos la consulta con PDO
+			$stmt -> execute();
+			//retornamos el fetch que es el que obtiene una fila o posición de un array
+			return $stmt -> fetch();
+			//Cerramos el PDO
+			$stmt -> close();
+		}
+
+		//Método para VISTA USUARIOS (TABLA)
+		public function vistaUsuariosModel($tabla) {
+			$stmt = Conexion::conectar() ->> prepare("SELECT id, usuario, contraseña, email FROM $tabla");
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+			$stmt -> close();
+		}
 	}
 ?>
