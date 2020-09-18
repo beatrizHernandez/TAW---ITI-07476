@@ -74,7 +74,7 @@
 			}
 		}
 
-		//Método EDITAR USUARIOS
+		//Método LISTAR USUARIOS PARA EDITAR
 		public function editarUsuarioController() {
 			//Solictar el id del usuario a editar
 			$datosController = $_GET["id"];
@@ -82,11 +82,30 @@
 			$respuesta = Datos::editarUsuarioModel($datosController, "usuarios");
 
 			//Recibimmos respuesta del modelo e imprimimos un FORM para editar
-			echo '<input type="hidden' value="'.$respuesta["id"].'"name="idEditar">
-				<input type="text' value="'.$respuesta["usuario"].'"name="usuarioEditar" required>
-				<input type="text' value="'.$respuesta["password"].'"name="passwordEditar" required>
-				<input type="text' value="'.$respuesta["email"].'"name="emailEditar" required>
+			echo '<input type="hidden" value="'.$respuesta["id"].'"name="idEditar">
+				<input type="text" value="'.$respuesta["usuario"].'"name="usuarioEditar" required>
+				<input type="text" value="'.$respuesta["password"].'"name="passwordEditar" required>
+				<input type="text" value="'.$respuesta["email"].'"name="emailEditar" required>
 				<input type="submit" value="Actualizar">';
+		}
+
+		//Método para ACTUALIZAR USUARIO (UPDATE)
+		public function actualizarUsuarioController() {
+			if(isse($_POST["usuarioEditar"])) {
+				//Preparamos un array con los id del form del controlador anterior para ejecutar la actualización en un modelo
+				$datosController = array("id" => $_POST["idEditar"], "usuario" => $_POST["usuarioEditar"], "password" => $_POST["passwordEditar"], "email" => $_POST["emailEditar"]);
+
+				//Enviar el array al modelo que generará el UPDATE
+				$respuesta = Datos::actualizarUsuarioModel($datosController, "usuarios");
+
+				//Recibimos respuesta del modelo para determinar si se llevó acabo el UPDATE de manera correcta
+				if($respuesta == "success") {
+					header("location:index.php?action=cambio");
+				}
+				else {
+					echo "error";
+				}
+			}
 		}
 	}
 ?>

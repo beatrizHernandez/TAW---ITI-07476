@@ -39,14 +39,29 @@
 			$stmt -> close();
 		}
 
-		//Método para VISTA USUARIOS (TABLA)
+		//Método para VISTA USUARIO (TABLA)
 		public function vistaUsuariosModel($tabla) {
-			$stmt = Conexion::conectar() ->> prepare("SELECT id, usuario, contraseña, email FROM $tabla");
+			$stmt = Conexion::conectar() -> prepare("SELECT id, usuario, contraseña, email FROM $tabla");
 			$stmt -> execute();
 
 			return $stmt -> fetchAll();
 
 			$stmt -> close();
 		}
+
+		//Método para SELECCIONAR USUARIO
+		public function editarUsuarioModel($datosModel, $tabla) {
+			//SELECT
+			$stmt = Conexion::conectar() -> prepare("SELECT id, usuario, contraseña, email FROM $tabla WHERE id = :id");
+			$stmt -> bindParam(":id", $datosModel, PDO::PARAM_INT);
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+			$stmt -> close();
+		}
+
+		//Método para actualizar usuarios (UPDATE)
+		
 	}
 ?>
