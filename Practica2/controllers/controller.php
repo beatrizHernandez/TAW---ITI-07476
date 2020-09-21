@@ -107,5 +107,20 @@
 				}
 			}
 		}
+
+		//Borrado de usuario
+		public function borrarUsuarioController() {
+			if(isset($_GET["idBorrar"])) {
+				$datosController = $_GET["idBorrar"];
+
+				//Mandar ID al controlador para que ejecute el DELETE
+				$respuesta = Datos::borrarUsuarioModel($datosController, "usuarios");
+
+				//Recibimos la respuesta del modelo de eliminación
+				if($respuesta == "success") {
+					header("location:index.php?action=usuarios");
+				}
+			}
+		}
 	}
 ?>
