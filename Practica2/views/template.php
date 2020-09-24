@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Práctica no. 1</title>
+	<title>Práctica no. 2</title>
 
 	<style>
 		header {
@@ -45,7 +45,7 @@
 	</style>
 </head>
 <body>
-	<header><h1>Bienvenidos a la práctica no. 1</h1></header>
+	<header><h1>Bienvenidos a la práctica no. 2</h1></header>
 
 	<?php
 		//Inlcuir el menú de navegación
