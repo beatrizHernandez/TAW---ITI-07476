@@ -6,6 +6,7 @@
 			}
 			else if($enlaces == "index") {
 				$module = "views/registro.php";
+				
 			}
 			else if($enlaces == "ok") {
 				$module = "views/modules/registro.php";

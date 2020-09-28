@@ -16,19 +16,26 @@
 			include $respuesta;
 		}
 		//Método del controlador para registro de usuarios
-		public function resgistroUsuarioController() {
-			//Almaceno en un array los valores de la vista de registro
-			$datosController = array("usuario" => $_POST["usuarioResgitro"], "password" => $_POST["passwordResgistro"], "email" => $_POST["emailRegistro"]);
+		public function registroUsuarioController() {
 
-			//Enviamos los parametros al modelo para que procese el registro
-			$respuesta = Datos::registroUsuarioModel($datosController, "usuarios");
+			if(isset($_POST["usuarioRegistro"])) {
 
-			//Recibir la respuesta del modelo para saber que sucedió (success o error)
-			if($respuesta == "success") {
-				header("location:index.php?action=ok");
-			}
-			else {
-				header("location:index.php");
+				//Almaceno en un array los valores de la vista de registro
+				$datosController = array("usuario" => $_POST["usuarioRegistro"], 
+										"password" => $_POST["passwordRegistro"], 
+										"email" => $_POST["emailRegistro"]);
+
+				//Enviamos los parametros al modelo para que procese el registro
+				$respuesta = Datos::registroUsuarioModel($datosController, "usuarios");
+
+				//Recibir la respuesta del modelo para saber que sucedió (success o error)
+				if($respuesta == "success") {
+					echo "bien";
+					//header("location:index.php?action=ok");
+				}
+				else {
+					header("location:index.php");
+				}
 			}
 		}
 
@@ -62,7 +69,7 @@
 			foreach ($respuesta as $row => $item) {
 				echo '<tr>
 					<td>'.$item["usuario"].'</td>
-					<td>'.$item["contraseña"].'</td>
+					<td>'.$item["contrasena"].'</td>
 					<td>'.$item["email"].'</td>
 
 					<!-- COLUMNA PARA EDITAR -->

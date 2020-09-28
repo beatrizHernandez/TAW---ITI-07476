@@ -7,7 +7,7 @@
 </form>
 
 <?php
-	$ingreso = MvcController();
+	$ingreso = new MvcController();
 	$ingreso -> registroUsuarioController();
 
 	//Verificar la URL correcta
