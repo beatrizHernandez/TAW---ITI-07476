@@ -1,7 +1,7 @@
 <?php
 	class Paginas {
 		public function enlacesPaginasModel($enlaces) {
-			if($enlaces == "ingresar" || $enlaces == "usuarios" || $enlaces == "editar" || $enlaces == "salir") {
+			if($enlaces == "ingresar" || $enlaces == "usuarios" || $enlaces == "editar" || $enlaces == "salir" || $enlaces == "carreras" || $enlaces == "materias") {
 				$module = "views/".$enlaces.".php";
 			}
 			else if($enlaces == "index") {

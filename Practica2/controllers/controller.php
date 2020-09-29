@@ -81,6 +81,44 @@
 			}
 		}
 
+		////////////////////////////////////////////////////////////////////////////////////////////
+		public function vistaCarrerasController() {
+			//Envío al modelo la variable de control y la tabla a donde se hará la consulta
+			$respuesta = Datos::vistaCarrerasModel("carreras");
+
+			foreach ($respuesta as $row => $item) {
+				echo '<tr>
+					<td>'.$item["nombre"].'</td>
+
+					<!-- COLUMNA PARA EDITAR -->
+					<td><a href="index.php?action=editar&id='.$item["id_carrera"].'"><button> EDITAR </button></a></td>
+
+					<!-- COLUMNA PARA BORRAR -->
+					<td><a href="index.php?action=usuarios&idBorrar='.$item["id_carrera"].'"><button> ELIMINAR </button></a></td>
+				</tr>';	
+			}
+		}
+
+		public function vistaMateriasController() {
+			//Envío al modelo la variable de control y la tabla a donde se hará la consulta
+			$respuesta = Datos::vistaMateriasModel("materias");
+
+			foreach ($respuesta as $row => $item) {
+				echo '<tr>
+					<td>'.$item["nombre"].'</td>
+					<td>'.$item["clave"].'</td>
+					<td>'.$item["carrera"].'</td>
+
+					<!-- COLUMNA PARA EDITAR -->
+					<td><a href="index.php?action=editar&id='.$item["id_mat"].'"><button> EDITAR </button></a></td>
+
+					<!-- COLUMNA PARA BORRAR -->
+					<td><a href="index.php?action=usuarios&idBorrar='.$item["id_mat"].'"><button> ELIMINAR </button></a></td>
+				</tr>';	
+			}
+		}
+		//////////////////////////////////////////////////////////////////////////////////////////
+
 		//Método LISTAR USUARIOS PARA EDITAR
 		public function editarUsuarioController() {
 			//Solictar el id del usuario a editar

@@ -52,6 +52,26 @@
 			$stmt -> close();
 		}
 
+		////////////////////////////////////////////////////////////////////////
+		public function vistaCarrerasModel($tabla) {
+			$stmt = Conexion::conectar() -> prepare("SELECT id_carrera, nombre FROM $tabla");
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+			$stmt -> close();
+		}
+
+		public function vistaMateriasModel($tabla) {
+			$stmt = Conexion::conectar() -> prepare("SELECT id_mat, nombre, clave, carrera FROM $tabla");
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+			$stmt -> close();
+		}
+		////////////////////////////////////////////////////////////////////////
+
 		//Método para SELECCIONAR USUARIO
 		public function editarUsuarioModel($datosModel, $tabla) {
 			//SELECT
