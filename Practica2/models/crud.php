@@ -69,18 +69,22 @@
 			//Preparar el query
 			$stmt = Conexion::conectar() -> prepare("UPDATE $tabla SET usuario = :usuario, contrasena = :password, email = :email WHERE id = :id");
 
+
 			//Ejecutar el query
-			$stmt -> bindParam(":usuario", $datosModel["usuario"], PDO::ARAM_STR);
-			$stmt -> bindParam(":password", $datosModel["contrasena"], PDO::ARAM_STR);
-			$stmt -> bindParam(":email", $datosModel["email"], PDO::ARAM_STR);
-			$stmt -> bindParam(":id", $datosModel["id"], PDO::ARAM_STR);
+			$stmt -> bindParam(":usuario",$datosModel["usuario"], PDO::PARAM_STR);
+			$stmt -> bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
+			$stmt -> bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+			$stmt -> bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+
+
+
 
 			//Preparar respuesta
 			if($stmt -> execute()) {
 				return "success";
 			}
 			else {
-				return "error";
+				var_dump($stmt);
 			}
 
 			//Cerrar la conexión PDO

@@ -48,9 +48,9 @@
 				$respuesta = Datos::ingresoUsuarioModel($datosController, "usuarios");
 
 				//Recibe respuesta del modelo
-				if($respuesta["usuario"] == $_POST["usuarioIngreso"] && $respuesta["password"] == $_POST["passwordIngreso"]) {
-					session_start();
+				if($respuesta["usuario"] == $_POST["usuarioIngreso"] && $respuesta["contrasena"] == $_POST["passwordIngreso"]) {
 
+					session_start();
 					$_SESSION["validar"] = true;
 
 					header("location:index.php?action=usuarios");
@@ -91,14 +91,14 @@
 			//Recibimmos respuesta del modelo e imprimimos un FORM para editar
 			echo '<input type="hidden" value="'.$respuesta["id"].'"name="idEditar">
 				<input type="text" value="'.$respuesta["usuario"].'"name="usuarioEditar" required>
-				<input type="text" value="'.$respuesta["password"].'"name="passwordEditar" required>
+				<input type="text" value="'.$respuesta["contrasena"].'"name="passwordEditar" required>
 				<input type="text" value="'.$respuesta["email"].'"name="emailEditar" required>
 				<input type="submit" value="Actualizar">';
 		}
 
 		//Método para ACTUALIZAR USUARIO (UPDATE)
 		public function actualizarUsuarioController() {
-			if(isse($_POST["usuarioEditar"])) {
+			if(isset($_POST["usuarioEditar"])) {
 				//Preparamos un array con los id del form del controlador anterior para ejecutar la actualización en un modelo
 				$datosController = array("id" => $_POST["idEditar"], "usuario" => $_POST["usuarioEditar"], "password" => $_POST["passwordEditar"], "email" => $_POST["emailEditar"]);
 

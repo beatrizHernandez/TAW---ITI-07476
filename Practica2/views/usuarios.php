@@ -20,7 +20,7 @@
 	<tbody>
 		<?php
 			$vistaUsuario = new MvcController();
-			$vistaUsuario -> vistUsuariosController();
+			$vistaUsuario -> vistaUsuariosController();
 			$vistaUsuario -> borrarUsuarioController();
 		?>
 	</tbody>

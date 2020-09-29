@@ -6,7 +6,7 @@
 </form>
 
 <?php
-	$ingreso = MvcController();
+	$ingreso = new MvcController();
 	$ingreso -> ingresoUsuarioController();
 
 	//Verificar la URL correcta
