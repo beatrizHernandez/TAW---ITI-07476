@@ -19,9 +19,9 @@
 	</thead>
 	<tbody>
 		<?php
-			$vistaAlumno = new MvcController();
-			$vistaAlumno -> vistaMateriasController();
-			//$vistaAlumno -> borrarUsuarioController();
+			$vistaMateria = new MvcController();
+			$vistaMateria -> vistaMateriasController();
+			$vistaMateria -> borrarMateriaController();
 		?>
 	</tbody>
 </table>

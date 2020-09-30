@@ -27,7 +27,7 @@
 <?php
 	if(isset($_GET["action"])) {
 		if($_GET["action"] == "cambio") {
-			echo "Cambio exitoso";
+			echo "¡Cambio exitoso!";
 		}
 	}
 ?>

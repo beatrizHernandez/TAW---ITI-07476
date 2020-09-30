@@ -13,6 +13,8 @@
 			<th>Usuario</th>
 			<th>Contraseña</th>
 			<th>Email</th>
+			<th>Carrera</th>
+			<th>Materia</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -29,7 +31,7 @@
 <?php
 	if(isset($_GET["action"])) {
 		if($_GET["action"] == "cambio") {
-			echo "Cambio exitoso";
+			echo "¡Cambio exitoso!";
 		}
 	}
 ?>

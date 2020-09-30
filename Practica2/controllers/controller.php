@@ -23,14 +23,16 @@
 				//Almaceno en un array los valores de la vista de registro
 				$datosController = array("usuario" => $_POST["usuarioRegistro"], 
 										"password" => $_POST["passwordRegistro"], 
-										"email" => $_POST["emailRegistro"]);
+										"email" => $_POST["emailRegistro"],
+										"idCarrera" => $_POST["idCarreraRegistro"],
+										"idMateria" => $_POST["idMateriaRegistro"]);
 
 				//Enviamos los parametros al modelo para que procese el registro
 				$respuesta = Datos::registroUsuarioModel($datosController, "usuarios");
 
 				//Recibir la respuesta del modelo para saber que sucedió (success o error)
 				if($respuesta == "success") {
-					echo "bien";
+					echo "¡REGISTRO EXITOSO!";
 					//header("location:index.php?action=ok");
 				}
 				else {
@@ -67,10 +69,16 @@
 			$respuesta = Datos::vistaUsuariosModel("usuarios");
 
 			foreach ($respuesta as $row => $item) {
+
+				$carrera = Datos::VistaCarreraAlumnoModel($item["id_carrera"], "carreras");
+				$materia = Datos::VistaMateriaAlumnoModel($item["id_mat"], "materias");
+
 				echo '<tr>
 					<td>'.$item["usuario"].'</td>
 					<td>'.$item["contrasena"].'</td>
 					<td>'.$item["email"].'</td>
+					<td>'.$carrera["nombre"].'</td>
+					<td>'.$materia["nombre"].'</td>
 
 					<!-- COLUMNA PARA EDITAR -->
 					<td><a href="index.php?action=editar&id='.$item["id"].'"><button> EDITAR </button></a></td>
@@ -91,10 +99,10 @@
 					<td>'.$item["nombre"].'</td>
 
 					<!-- COLUMNA PARA EDITAR -->
-					<td><a href="index.php?action=editar&id='.$item["id_carrera"].'"><button> EDITAR </button></a></td>
+					<td><a href="index.php?action=editarCarrera&id='.$item["id_carrera"].'"><button> EDITAR </button></a></td>
 
 					<!-- COLUMNA PARA BORRAR -->
-					<td><a href="index.php?action=usuarios&idBorrar='.$item["id_carrera"].'"><button> ELIMINAR </button></a></td>
+					<td><a href="index.php?action=carreras&idBorrar='.$item["id_carrera"].'"><button> ELIMINAR </button></a></td>
 				</tr>';	
 			}
 		}
@@ -110,13 +118,14 @@
 					<td>'.$item["carrera"].'</td>
 
 					<!-- COLUMNA PARA EDITAR -->
-					<td><a href="index.php?action=editar&id='.$item["id_mat"].'"><button> EDITAR </button></a></td>
+					<td><a href="index.php?action=editarMateria&id='.$item["id_mat"].'"><button> EDITAR </button></a></td>
 
 					<!-- COLUMNA PARA BORRAR -->
-					<td><a href="index.php?action=usuarios&idBorrar='.$item["id_mat"].'"><button> ELIMINAR </button></a></td>
+					<td><a href="index.php?action=materias&idBorrar='.$item["id_mat"].'"><button> ELIMINAR </button></a></td>
 				</tr>';	
 			}
 		}
+
 		//////////////////////////////////////////////////////////////////////////////////////////
 
 		//Método LISTAR USUARIOS PARA EDITAR
@@ -131,6 +140,8 @@
 				<input type="text" value="'.$respuesta["usuario"].'"name="usuarioEditar" required>
 				<input type="text" value="'.$respuesta["contrasena"].'"name="passwordEditar" required>
 				<input type="text" value="'.$respuesta["email"].'"name="emailEditar" required>
+				<input type="text" value="'.$respuesta["id_carrera"].'"name="idCarreraEditar" required>
+				<input type="text" value="'.$respuesta["id_mat"].'"name="idMateriaEditar" required>
 				<input type="submit" value="Actualizar">';
 		}
 
@@ -138,7 +149,12 @@
 		public function actualizarUsuarioController() {
 			if(isset($_POST["usuarioEditar"])) {
 				//Preparamos un array con los id del form del controlador anterior para ejecutar la actualización en un modelo
-				$datosController = array("id" => $_POST["idEditar"], "usuario" => $_POST["usuarioEditar"], "password" => $_POST["passwordEditar"], "email" => $_POST["emailEditar"]);
+				$datosController = array("id" => $_POST["idEditar"], 
+										"usuario" => $_POST["usuarioEditar"], 
+										"password" => $_POST["passwordEditar"], 
+										"email" => $_POST["emailEditar"],
+										"idCarrera" => $_POST["idCarreraEditar"],
+										"idMateria" => $_POST["idMateriaEditar"]);
 
 				//Enviar el array al modelo que generará el UPDATE
 				$respuesta = Datos::actualizarUsuarioModel($datosController, "usuarios");
@@ -164,6 +180,79 @@
 				//Recibimos la respuesta del modelo de eliminación
 				if($respuesta == "success") {
 					header("location:index.php?action=usuarios");
+				}
+			}
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		public function registroMateriasController() {
+			if(isset($_POST["nombreRegistro"])) {
+
+				//Almaceno en un array los valores de la vista de registro
+				$datosController = array("nombre" => $_POST["nombreRegistro"], 
+										"clave" => $_POST["claveRegistro"],
+										"carrera" => $_POST["idCarreraRegistro"]);
+
+				//Enviamos los parametros al modelo para que procese el registro
+				$respuesta = Datos::registroMateriasModel($datosController, "materias");
+
+				//Recibir la respuesta del modelo para saber que sucedió (success o error)
+				if($respuesta == "success") {
+					echo "¡REGISTRO EXITOSO!";
+					//header("location:index.php?action=ok");
+				}
+				else {
+					header("location:materias.php");
+				}
+			}
+		}
+
+		public function editarMateriaController() {
+			//Solictar el id del usuario a editar
+			$datosController = $_GET["id"];
+			//Enviamos al modelo el id para hacer la consulta y obtener sus datos
+			$respuesta = Datos::editarMateriaModel($datosController, "materias");
+
+			//Recibimmos respuesta del modelo e imprimimos un FORM para editar
+			echo '<input type="hidden" value="'.$respuesta["id_mat"].'"name="idMateriaEditar">
+				<input type="text" value="'.$respuesta["nombre"].'"name="nombreEditar" required>
+				<input type="text" value="'.$respuesta["clave"].'"name="claveEditar" required>
+				<input type="text" value="'.$respuesta["carrera"].'"name="CarreraEditar" required>
+				<input type="submit" value="Actualizar">';
+		}
+
+		//Método para ACTUALIZAR USUARIO (UPDATE)
+		public function actualizarMateriaController() {
+			if(isset($_POST["idMateriaEditar"])) {
+				//Preparamos un array con los id del form del controlador anterior para ejecutar la actualización en un modelo
+				$datosController = array("id" => $_POST["idMateriaEditar"], 
+										"nombre" => $_POST["nombreEditar"], 
+										"clave" => $_POST["claveEditar"],
+										"carrera" => $_POST["CarreraEditar"]);
+
+				//Enviar el array al modelo que generará el UPDATE
+				$respuesta = Datos::actualizarMateriaModel($datosController, "materias");
+
+				//Recibimos respuesta del modelo para determinar si se llevó acabo el UPDATE de manera correcta
+				if($respuesta == "success") {
+					header("location:index.php?action=cambioMateria");
+				}
+				else {
+					echo "error";
+				}
+			}
+		}
+
+		public function borrarMateriaController() {
+			if(isset($_GET["idBorrar"])) {
+				$datosController = $_GET["idBorrar"];
+
+				//Mandar ID al controlador para que ejecute el DELETE
+				$respuesta = Datos::borrarMateriaModel($datosController, "materias");
+
+				//Recibimos la respuesta del modelo de eliminación
+				if($respuesta == "success") {
+					header("location:index.php?action=materias");
 				}
 			}
 		}
