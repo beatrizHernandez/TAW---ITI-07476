@@ -227,5 +227,78 @@
 
 			$stmt -> close();
 		}
+
+		public function registroCarreraModel ($datosModel, $tabla){
+			//Preparar el modelo para hacer los INSERTs a la BD
+			$stmt = Conexion::conectar() -> prepare("INSERT INTO $tabla(nombre) VALUES (:nombre)");
+			//prepare() prepara una sentencia SQL para ser ejecutada por el método PDOStatment::execute()
+
+			//bindParam() vincula el valor de una variable de PHP a un parametro de sustitución con nombre o signo de interrogación correspondiente. Es la sentencia usada para preparar un query de SQL
+			$stmt -> bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+
+			//Verificar ejecución del query
+			if($stmt -> execute()) {
+				return "success";
+			}
+			else {
+				echo "\nPDO::errorInfo():\n";
+    			print_r($stmt->errorInfo());
+				return "error";
+
+			}
+
+			//Cerrar las funciones de la sentencia de PDO
+			$stmt -> close();
+		}
+
+		public function editarCarreraModel($datosModel, $tabla) {
+			//SELECT
+			$stmt = Conexion::conectar() -> prepare("SELECT id_carrera, nombre FROM $tabla WHERE id_carrera = :id");
+			$stmt -> bindParam(":id", $datosModel, PDO::PARAM_INT);
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+			$stmt -> close();
+		}
+
+		//Método para actualizar usuarios (UPDATE)
+		public function actualizarCarreraModel($datosModel, $tabla) {
+			//Preparar el query
+			$stmt = Conexion::conectar() -> prepare("UPDATE $tabla SET nombre = :nombre WHERE id_carrera = :id");
+
+
+			//Ejecutar el query
+			$stmt -> bindParam(":nombre",$datosModel["nombre"], PDO::PARAM_STR);
+			$stmt -> bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
+
+			//Preparar respuesta
+			if($stmt -> execute()) {
+				return "success";
+			}
+			else {
+				var_dump($stmt);
+			}
+
+			//Cerrar la conexión PDO
+			$stmt -> close();
+		}
+
+		public function borrarCarreraModel($datosModel, $tabla) {
+			//Preparar el query para eliminar
+			$stmt = Conexion::conectar() -> prepare("DELETE FROM $tabla WHERE id_carrera = :id");
+
+			$stmt -> bindParam(":id", $datosModel, PDO::PARAM_STR);
+
+			//Ejecutar
+			if($stmt -> execute()) {
+				return "success";
+			}
+			else {
+				return "error";
+			}
+
+			$stmt -> close();
+		}
 	}
 ?>

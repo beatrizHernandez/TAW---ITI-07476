@@ -256,5 +256,71 @@
 				}
 			}
 		}
+
+		public function registroCarreraController() {
+			if(isset($_POST["carreraRegistro"])) {
+
+				//Almaceno en un array los valores de la vista de registro
+				$datosController = array("nombre" => $_POST["carreraRegistro"]);
+
+				//Enviamos los parametros al modelo para que procese el registro
+				$respuesta = Datos::registroCarreraModel($datosController, "carreras");
+
+				//Recibir la respuesta del modelo para saber que sucedió (success o error)
+				if($respuesta == "success") {
+					echo "¡REGISTRO EXITOSO!";
+					//header("location:index.php?action=ok");
+				}
+				else {
+					header("location:index.php?action=carreras");
+				}
+			}
+		}
+
+		public function editarCarreraController() {
+			//Solictar el id del usuario a editar
+			$datosController = $_GET["id"];
+			//Enviamos al modelo el id para hacer la consulta y obtener sus datos
+			$respuesta = Datos::editarCarreraModel($datosController, "carreras");
+
+			//Recibimmos respuesta del modelo e imprimimos un FORM para editar
+			echo '<input type="hidden" value="'.$respuesta["id_carrera"].'"name="idCarreraEditar">
+				<input type="text" value="'.$respuesta["nombre"].'"name="nombreEditar" required>
+				<input type="submit" value="Actualizar">';
+		}
+
+		//Método para ACTUALIZAR USUARIO (UPDATE)
+		public function actualizarCarreraController() {
+			if(isset($_POST["idCarreraEditar"])) {
+				//Preparamos un array con los id del form del controlador anterior para ejecutar la actualización en un modelo
+				$datosController = array("id" => $_POST["idCarreraEditar"], 
+										"nombre" => $_POST["nombreEditar"]);
+
+				//Enviar el array al modelo que generará el UPDATE
+				$respuesta = Datos::actualizarCarreraModel($datosController, "carreras");
+
+				//Recibimos respuesta del modelo para determinar si se llevó acabo el UPDATE de manera correcta
+				if($respuesta == "success") {
+					header("location:index.php?action=cambioCarrera");
+				}
+				else {
+					echo "error";
+				}
+			}
+		}
+
+		public function borrarCarreraController() {
+			if(isset($_GET["idBorrar"])) {
+				$datosController = $_GET["idBorrar"];
+
+				//Mandar ID al controlador para que ejecute el DELETE
+				$respuesta = Datos::borrarCarreraModel($datosController, "carreras");
+
+				//Recibimos la respuesta del modelo de eliminación
+				if($respuesta == "success") {
+					header("location:index.php?action=carreras");
+				}
+			}
+		}
 	}
 ?>

@@ -1,7 +1,7 @@
 <?php
 	class Paginas {
 		public function enlacesPaginasModel($enlaces) {
-			if($enlaces == "ingresar" || $enlaces == "usuarios" || $enlaces == "registroMaterias" || $enlaces == "editar" || $enlaces == "editarMateria" || $enlaces == "editarCarrera" || $enlaces == "salir" || $enlaces == "carreras" || $enlaces == "materias") {
+			if($enlaces == "ingresar" || $enlaces == "usuarios" || $enlaces == "registroMaterias" || $enlaces == "registroCarreras" || $enlaces == "editar" || $enlaces == "editarMateria" || $enlaces == "editarCarrera" || $enlaces == "salir" || $enlaces == "carreras" || $enlaces == "materias") {
 				$module = "views/".$enlaces.".php";
 			}
 			else if($enlaces == "index") {
@@ -19,6 +19,9 @@
 			}
 			else if($enlaces == "cambioMateria") {
 				$module = "views/materias.php";
+			}
+			else if($enlaces == "cambioCarrera") {
+				$module = "views/carreras.php";
 			}
 			else {
 				$module = "views/registro.php";

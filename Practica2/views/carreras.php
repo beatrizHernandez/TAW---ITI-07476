@@ -17,16 +17,16 @@
 	</thead>
 	<tbody>
 		<?php
-			$vistaAlumno = new MvcController();
-			$vistaAlumno -> vistaCarrerasController();
-			//$vistaAlumno -> borrarUsuarioController();
+			$vistaCarreras = new MvcController();
+			$vistaCarreras -> vistaCarrerasController();
+			$vistaCarreras -> borrarCarreraController();
 		?>
 	</tbody>
 </table>
 
 <?php
 	if(isset($_GET["action"])) {
-		if($_GET["action"] == "cambio") {
+		if($_GET["action"] == "cambioCarrera") {
 			echo "¡Cambio exitoso!";
 		}
 	}
