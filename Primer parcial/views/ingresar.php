@@ -15,4 +15,4 @@
 			echo "Fallo al ingresar";
 		}
 	}
-?
+?>

@@ -1,7 +1,7 @@
 <?php
 	class Paginas {
 		public function enlacesPaginasModel($enlaces) {
-			if($enlaces == "ingresar" || $enlaces == "usuarios" || $enlaces == "registroMaterias" || $enlaces == "editar" || $enlaces == "editarMateria" || $enlaces == "salir" || $enlaces == "materias") {
+			if($enlaces == "ingresar" || $enlaces == "usuarios" || $enlaces == "registroLibros" || $enlaces == "editar" || $enlaces == "editarLibro" || $enlaces == "salir" || $enlaces == "libros") {
 				$module = "views/".$enlaces.".php";
 			}
 			else if($enlaces == "index") {
@@ -16,8 +16,8 @@
 			else if($enlaces == "cambio") {
 				$module = "views/usuarios.php";
 			}
-			else if($enlaces == "cambioMateria") {
-				$module = "views/materias.php";
+			else if($enlaces == "cambioLibro") {
+				$module = "views/libros.php";
 			}
 			else {
 				$module = "views/registro.php";
