@@ -6,6 +6,6 @@
 
 	//Se crea un nuevo controlador llamando a la plantilla que mostrará al usuario
 	$mvc = new MvcController();
-	$mvc-> plantilla();
+	$mvc-> plantilla();  //la variable ejecuta el método del controlador (que al mismo tiempo incluye al archivo "template.php")
 	
 ?>

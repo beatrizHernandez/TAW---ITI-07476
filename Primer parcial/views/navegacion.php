@@ -1,5 +1,6 @@
 <nav>
 	<ul>
+		<!-- Secciones del menú de navegación -->
 		<li><a href="index.php">Registro</a></li>
 		<li><a href="index.php?action=ingresar">Ingreso</a></li>
 		<li><a href="index.php?action=usuarios">Usuarios</a></li>

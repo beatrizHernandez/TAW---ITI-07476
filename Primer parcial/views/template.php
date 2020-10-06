@@ -8,6 +8,8 @@
 			position: relative;
 			margin: auto;
 			text-align: center;
+            font-family: "Segoe UI";
+            font-style: oblique;
 			padding: 5px;	
         }
             
@@ -16,7 +18,7 @@
             margin: auto;
             width: 100%;
             height: auto;
-            background: black;
+            background-image: url(images/madera_1.jpg);
         }
 
         nav ul {
@@ -35,16 +37,21 @@
 
         nav ul li a {
             color: white;
+            font-family: "Latin Modern Roman 10";
+            font-style: oblique;
+            font-weight: bolder;
             text-decoration: none;
         }
 
         section {
-            position: relative;
+            position: relative; 
             padding: 20px;
         }
+
 	</style>
 </head>
-<body>
+<body background="images/gris_1.jpg" style = "background-size: cover">
+
 	<header><h1>Evaluación: primer parcial</h1></header>
 
 	<?php
@@ -56,7 +63,7 @@
 		<?php
 			//Mostrar opciones
 			$mvc = new MvcController();
-			$mvc -> enlacesPaginasController();
+			$mvc -> enlacesPaginasController(); //la variable ejecuta el método del controlador
 		?>
 	</section>
 </body>

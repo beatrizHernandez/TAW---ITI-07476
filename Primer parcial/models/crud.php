@@ -21,6 +21,7 @@
 				return "success";
 			}
 			else {
+				//Informa que se ha producido un error
 				echo "\nPDO::errorInfo():\n";
     			print_r($stmt->errorInfo());
 				return "error";
@@ -34,7 +35,7 @@
 		public function ingresoUsuarioModel($datosModel, $tabla) {
 			//Preparamos el PDO
 			$stmt = Conexion::conectar() -> prepare("SELECT usuario, contrasena FROM $tabla WHERE usuario = :usuario");
-			//Recibimos el valor usuario desde eñ array almacenado del controlador
+			//Recibimos el valor usuario desde el array almacenado del controlador
 			$stmt -> bindParam(":usuario", $datosModel["usuario"], PDO::PARAM_STR);
 			//ejecutamos la consulta con PDO
 			$stmt -> execute();
@@ -46,23 +47,26 @@
 
 		//Método para VISTA USUARIO (TABLA)
 		public function vistaUsuariosModel($tabla) {
+			//SELECT a la base de datos
 			$stmt = Conexion::conectar() -> prepare("SELECT id, usuario, contrasena, email FROM $tabla");
 			$stmt -> execute();
 
 			return $stmt -> fetchAll();
 
+			//Cerrar las funciones de la sentencia de PDO
 			$stmt -> close();
 		}
 
 		//Método para SELECCIONAR USUARIO
 		public function editarUsuarioModel($datosModel, $tabla) {
-			//SELECT
+			//SELECT a la base de datos
 			$stmt = Conexion::conectar() -> prepare("SELECT id, usuario, contrasena, email FROM $tabla WHERE id = :id");
 			$stmt -> bindParam(":id", $datosModel, PDO::PARAM_INT);
 			$stmt -> execute();
 
 			return $stmt -> fetch();
 
+			//Cerrar las funciones de la sentencia de PDO
 			$stmt -> close();
 		}
 
@@ -71,7 +75,7 @@
 			//Preparar el query
 			$stmt = Conexion::conectar() -> prepare("UPDATE $tabla SET usuario = :usuario, contrasena = :password, email = :email WHERE id = :id");
 
-			//Ejecutar el query
+			//Ejecutar el query en base a los campos de la tabla
 			$stmt -> bindParam(":usuario",$datosModel["usuario"], PDO::PARAM_STR);
 			$stmt -> bindParam(":password", $datosModel["password"], PDO::PARAM_STR);
 			$stmt -> bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
@@ -82,7 +86,7 @@
 				return "success";
 			}
 			else {
-				var_dump($stmt);
+				var_dump($stmt); //Muestra el contenido y el tipo de variable ($stmt)
 			}
 
 			//Cerrar la conexión PDO
@@ -109,6 +113,7 @@
 
 ////////////////////////////////////////////// FUNCIONES REFERENTES A LOS LIBROS //////////////////////////////////////////////////////////
 
+		//Método del modelo de REGISTRO DE LIBRO (Recibe datos del controlador)
 		public function registroLibrosModel ($datosModel, $tabla){
 			//Preparar el modelo para hacer los INSERTs a la BD
 			$stmt = Conexion::conectar() -> prepare("INSERT INTO $tabla(ISBN, nombre, autor, editorial, edicion, anio) VALUES (:ISBN, :nombre, :autor, :editorial, :edicion, :anio)");
@@ -127,6 +132,7 @@
 				return "success";
 			}
 			else {
+				//Informa que se ha producido un error
 				echo "\nPDO::errorInfo():\n";
     			print_r($stmt->errorInfo());
 				return "error";
@@ -136,27 +142,32 @@
 			$stmt -> close();
 		}
 
+		//Método para VISTA LIBROS (TABLA)
 		public function vistaLibrosModel($tabla) {
+			//SELECT a la base de datos
 			$stmt = Conexion::conectar() -> prepare("SELECT id_libro, ISBN, nombre, autor, editorial, edicion, anio FROM $tabla");
 			$stmt -> execute();
 
-			return $stmt -> fetchAll();
+			return $stmt -> fetchAll(); //trae todos los datos de golpe y se almacenan en $stmt
 
+			//Cerrar las funciones de la sentencia de PDO
 			$stmt -> close();
 		}
 
+		//Método para SELECCIONAR LIBRO
 		public function editarLibroModel($datosModel, $tabla) {
-			//SELECT
+			//SELECT a la base de datos
 			$stmt = Conexion::conectar() -> prepare("SELECT id_libro, ISBN, nombre, autor, editorial, edicion, anio FROM $tabla WHERE id_libro = :id");
 			$stmt -> bindParam(":id", $datosModel, PDO::PARAM_INT);
 			$stmt -> execute();
 
-			return $stmt -> fetch();
+			return $stmt -> fetch(); //recorre los datos uno por uno
 
+			//Cerrar las funciones de la sentencia de PDO
 			$stmt -> close();
 		}
 
-		//Método para actualizar usuarios (UPDATE)
+		//Método para actualizar libros (UPDATE)
 		public function actualizarLibroModel($datosModel, $tabla) {
 			//Preparar el query
 			$stmt = Conexion::conectar() -> prepare("UPDATE $tabla SET ISBN = :ISBN, nombre = :nombre, autor = :autor, editorial = :editorial, edicion = :edicion, anio = :anio WHERE id_libro = :id");
@@ -175,13 +186,14 @@
 				return "success";
 			}
 			else {
-				var_dump($stmt);
+				var_dump($stmt); //Muestra el contenido y el tipo de variable ($stmt)
 			}
 
 			//Cerrar la conexión PDO
 			$stmt -> close();
 		}
 
+		//Método para borrar un libro
 		public function borrarLibroModel($datosModel, $tabla) {
 			//Preparar el query para eliminar
 			$stmt = Conexion::conectar() -> prepare("DELETE FROM $tabla WHERE id_libro = :id");
@@ -196,6 +208,7 @@
 				return "error";
 			}
 
+			//Cerrar la conexión PDO
 			$stmt -> close();
 		}
 	}

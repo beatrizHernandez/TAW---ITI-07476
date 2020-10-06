@@ -7,14 +7,14 @@
 
 		//Método para mostrar los enlaces de las página
 		public function enlacesPaginasController () {
-			if(isset($_GET['action'])) {
-				$enlaces = $_GET['action'];
+			if(isset($_GET['action'])) {			//ISSET -> comprobar si la variable está definida
+				$enlaces = $_GET['action'];			//en dado caso de ser así, se le asigna a "$enlaces"
 			}
 			else {
-				$enlaces = "index";
+				$enlaces = "index"; //se regresa a index
 			}
-			$respuesta = Paginas::enlacesPaginasModel($enlaces);
-			include $respuesta;
+			$respuesta = Paginas::enlacesPaginasModel($enlaces); //Declaración de tipo de retorno
+			include $respuesta; //se incluye la variable especificada
 		}
 
 ////////////////////////////////////////////// FUNCIONES REFERENTES A LOS USUARIOS //////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@
 		//Método del controlador para registro de usuarios
 		public function registroUsuarioController() {
 
-			if(isset($_POST["usuarioRegistro"])) {
+			if(isset($_POST["usuarioRegistro"])) { //evalúa si el formulario fue enviado 
 
 				//Almaceno en un array los valores de la vista de registro
 				$datosController = array("usuario" => $_POST["usuarioRegistro"], 
@@ -35,18 +35,18 @@
 				//Recibir la respuesta del modelo para saber que sucedió (success o error)
 				if($respuesta == "success") {
 					echo "¡REGISTRO EXITOSO!";
-					//header("location:index.php?action=ok");
+					header("location:index.php?action=ingresar"); //se manda a la vista de "ingresar"
 				}
 				else {
-					header("location:index.php");
+					header("location:index.php"); //sino, se regresa a index
 				}
 			}
 		}
 
-		//Método para INGREO DE USUARIOS
+		//Método para INGRESO DE USUARIOS
 		public function ingresoUsuarioController() {
 			if(isset($_POST["usuarioIngreso"])) {
-				$datosController = array("usuario" => $_POST["usuarioIngreso"], "password" => $_POST["passwordIngreso"]);
+				$datosController = array("usuario" => $_POST["usuarioIngreso"], "password" => $_POST["passwordIngreso"]); //manda los datos proporcionados al array
 
 				//Mandar valores del array al modelo
 				$respuesta = Datos::ingresoUsuarioModel($datosController, "usuarios");
@@ -54,13 +54,13 @@
 				//Recibe respuesta del modelo
 				if($respuesta["usuario"] == $_POST["usuarioIngreso"] && $respuesta["contrasena"] == $_POST["passwordIngreso"]) {
 
-					session_start();
+					session_start(); //se inicia la sesión
 					$_SESSION["validar"] = true;
 
-					header("location:index.php?action=usuarios");
+					header("location:index.php?action=usuarios"); //de ser correctos los datos, se manda a la vista de usuarios
 				}
 				else {
-					header("location:index.php?action=fallo");
+					header("location:index.php?action=fallo"); // sino, marca "fallo" y se hace lo que indique el archivo "enlaces.php"
 				}
 			}
 		}
@@ -71,7 +71,7 @@
 			$respuesta = Datos::vistaUsuariosModel("usuarios");
 
 			foreach ($respuesta as $row => $item) {
-
+				//vista de los campos del crud que corresponde a los usuarios
 				echo '<tr>
 					<td>'.$item["usuario"].'</td>
 					<td>'.$item["contrasena"].'</td>
@@ -115,10 +115,10 @@
 
 				//Recibimos respuesta del modelo para determinar si se llevó acabo el UPDATE de manera correcta
 				if($respuesta == "success") {
-					header("location:index.php?action=cambio");
+					header("location:index.php?action=cambio"); //de ser "success" se ejecuta lo que contiene "enlaces.php" dependiendo de "action=cambio"
 				}
 				else {
-					echo "error";
+					echo "error"; //sino, se imprime un "error"
 				}
 			}
 		}
@@ -133,17 +133,18 @@
 
 				//Recibimos la respuesta del modelo de eliminación
 				if($respuesta == "success") {
-					header("location:index.php?action=usuarios");
+					header("location:index.php?action=usuarios"); //al ser borrados los datos, se redirige a "usuarios"
 				}
 			}
 		}
 
 ////////////////////////////////////////////// FUNCIONES REFERENTES A LOS LIBROS //////////////////////////////////////////////////////////
 
+		//Método del controlador para registro de libros
 		public function registroLibrosController() {
 			if(isset($_POST["ISBNRegistro"])) {
 
-				//Almaceno en un array los valores de la vista de registro
+				//Almacenos en un array los valores de la vista de registro
 				$datosController = array("ISBN" => $_POST["ISBNRegistro"], 
 										"nombre" => $_POST["nombreRegistro"],
 										"autor" => $_POST["autorRegistro"],
@@ -156,19 +157,20 @@
 
 				//Recibir la respuesta del modelo para saber que sucedió (success o error)
 				if($respuesta == "success") {
-					echo "¡REGISTRO EXITOSO!";
+					echo "¡REGISTRO EXITOSO!"; //imprime mensaje 
 					//header("location:index.php?action=ok");
 				}
 				else {
-					header("location:libros.php");
+					header("location:libros.php"); //manda al archivo "libros.php" que contiene la vista de los elementos
 				}
 			}
 		}
 
+		//Método VISTA LIBROS
 		public function vistaLibrosController() {
 			//Envío al modelo la variable de control y la tabla a donde se hará la consulta
 			$respuesta = Datos::vistaLibrosModel("libros");
-
+			//vista de los campos del crud que corresponde a los libros
 			foreach ($respuesta as $row => $item) {
 				echo '<tr>
 					<td>'.$item["ISBN"].'</td>
@@ -188,7 +190,7 @@
 		}
 
 		public function editarLibroController() {
-			//Solictar el id del usuario a editar
+			//Solictar el id del libro a editar
 			$datosController = $_GET["id"];
 			//Enviamos al modelo el id para hacer la consulta y obtener sus datos
 			$respuesta = Datos::editarLibroModel($datosController, "libros");
@@ -204,7 +206,7 @@
 				<input type="submit" value="Actualizar">';
 		}
 
-		//Método para ACTUALIZAR USUARIO (UPDATE)
+		//Método para ACTUALIZAR LIBRO (UPDATE)
 		public function actualizarLibroController() {
 			if(isset($_POST["idLibroEditar"])) {
 				//Preparamos un array con los id del form del controlador anterior para ejecutar la actualización en un modelo
@@ -221,14 +223,15 @@
 
 				//Recibimos respuesta del modelo para determinar si se llevó acabo el UPDATE de manera correcta
 				if($respuesta == "success") {
-					header("location:index.php?action=cambioLibro");
+					header("location:index.php?action=cambioLibro"); //de ser "success" se ejecuta lo que contiene "enlaces.php" dependiendo de "action=cambioLibro"
 				}
 				else {
-					echo "error";
+					echo "error"; //sino, se imprime un "error"
 				}
 			}
 		}
 
+		//Borrado de libro
 		public function borrarLibroController() {
 			if(isset($_GET["idBorrar"])) {
 				$datosController = $_GET["idBorrar"];
@@ -238,7 +241,7 @@
 
 				//Recibimos la respuesta del modelo de eliminación
 				if($respuesta == "success") {
-					header("location:index.php?action=libros");
+					header("location:index.php?action=libros"); //al ser borrados los datos, se redirige a "libros"
 				}
 			}
 		}
