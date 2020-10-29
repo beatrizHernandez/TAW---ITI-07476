@@ -17,7 +17,7 @@
 	<form action="{{route('add')}}" method="post">
 		@csrf
         <input type="text" name="nombre">
-        <button type="submit">Enviar</button>
+        <button type="submit">Guardar</button>
     </form>
 
     <h1> Recetas en BD </h1>
