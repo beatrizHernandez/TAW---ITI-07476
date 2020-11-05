@@ -1,5 +1,10 @@
 // Body
-$body-bg: #d5d6d5;
+$body-bg: #ffffff;
+
+//Editor Trix
+trix-editor{
+	min-height: 400px;
+}
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;

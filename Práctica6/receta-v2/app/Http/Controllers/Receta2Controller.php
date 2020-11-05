@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class Receta2Controller extends Controller
 {
+
+    //Validar la restricción a todos los métodos de usuario autenticado
+    public function _construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +33,12 @@ class Receta2Controller extends Controller
      */
     public function create()
     {
-        //
-        return view('recetas.create');
+        //Creamos una consulta a la BD sobre las categorias de las recetas
+        $categorias=DB::table('categoria_receta')->get()->pluck('nombre', 'id');
+        //Esta consulta retorna un array con los elementos de la tabla categoria
+
+        //Manda a la vista del formulario
+        return view('recetas.create')->with('categorias', $categorias);
     }
 
     /**
@@ -41,11 +51,21 @@ class Receta2Controller extends Controller
     {
 
         //dd($request->all());
-        $data=request();
+        $data=request()->validate([
+            //Reglas de validación
+            'titulo'=>'required|min:6',
+            'categoria'=>'required',
+            'preparacion'=>'required',
+            'ingredientes'=>'required',
+            'imagen'=>'required|image|size:2000',
+        ]);
+
         //Fascade (librerías de laravel)
-        DB::table('recetas')->insert([
+        DB::table('receta2s')->insert([
            'titulo' => $data['titulo']
         ]);
+
+        echo '<script language="javascript">alert("¡Se ha guardado la receta!");</script>';
 
         //
         /*$receta = new Receta2();
