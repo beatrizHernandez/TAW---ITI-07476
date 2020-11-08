@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Receta2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class Receta2Controller extends Controller
 {
@@ -50,20 +51,29 @@ class Receta2Controller extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
-        $data=request()->validate([
+        //dd($request['imagen']->store('uploads-recetas', 'public'));
+       $data=request()->validate([
             //Reglas de validación
             'titulo'=>'required|min:6',
             'categoria'=>'required',
             'preparacion'=>'required',
             'ingredientes'=>'required',
-            'imagen'=>'required|image|size:2000',
+            'imagen'=>'required|image|',
         ]);
+
+        $ruta_imagen = $request['imagen']->store('uploads-recetas', 'public');
 
         //Fascade (librerías de laravel)
         DB::table('receta2s')->insert([
-           'titulo' => $data['titulo']
+           'titulo' => $request['titulo'],
+           'preparacion'=>$request['preparacion'],
+           'ingredientes'=>$request['ingredientes'],
+           'imagen'=>$ruta_imagen, 
+           'user_id'=>Auth::user()->id,
+           'categoria_id'=>$request['categoria']
         ]);
+
+        return redirect()->action('Receta2Controller@index');
 
         echo '<script language="javascript">alert("¡Se ha guardado la receta!");</script>';
 

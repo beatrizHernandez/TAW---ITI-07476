@@ -11,7 +11,6 @@
 
     <!-- Definir el yield de estilos para la integración del editor Trix -->
     @yield('styles')
-
     
 
     <!-- Scripts -->

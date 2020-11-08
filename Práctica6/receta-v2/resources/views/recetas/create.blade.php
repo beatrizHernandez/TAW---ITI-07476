@@ -10,12 +10,13 @@
 	<a href="{{route('recetas.index')}}" class="btn btn-primary mr-2" text-white> Volver </a>
 @endsection
 
+
 @section('content')
 	<h2 class="text-center mb-5"> Crear nueva receta </h2>
 
 	<div class="row justify-content-center mt-5">
 		<div class="col-md-8">
-			<form method="POST" action="{{route('recetas.store')}}" novalidate>
+			<form method="POST" action="{{route('recetas.store')}}" enctype="multipart/form-data" novalidate>
 				@csrf
 				<!-- {{$categorias}} -->
 				<div class="form-group">
@@ -67,9 +68,10 @@
 					<!-- Campo de texto de preparación, se agrega el elemento -->
 					<input id="preparacion" type="hidden" name="preparacion" value="{{old('preparacion')}}">
 					<!-- Agregamos el editor -->
-					<trix-editor 
+					<trix-editor
 					class="form-control @error('preparacion') is-invalid @enderror"
-					input type="preparacion"></trix-editor>
+					input="preparacion"></trix-editor>
+
 					<!-- Validación de msj de error -->
 					@error('preparacion')
 						<span class="invalid-feedback d-block" role="alert">
@@ -88,7 +90,7 @@
 					<!-- Agregamos el editor -->
 					<trix-editor 
 					class="form-control @error('ingredientes') is-invalid @enderror"
-					input type="ingredientes"></trix-editor>
+					input="ingredientes"></trix-editor>
 					<!-- Validación de msj de error -->
 					@error('ingredientes')
 						<span class="invalid-feedback d-block" role="alert">
