@@ -39,3 +39,11 @@ route::get('/recetas/create', 'Receta2Controller@create')->name('recetas.create'
 
 route::post('/recetas', 'Receta2Controller@store')->name('recetas.store');
 
+route::get('/recetas/{receta}', 'Receta2Controller@show')->name('recetas.show');
+
+route::get('/recetas/{receta}/edit', 'Receta2Controller@edit')->name('recetas.edit');
+
+route::put('/recetas/{receta}', 'Receta2Controller@update')->name('recetas.update');
+
+route::delete('/recetas/{receta}', 'Receta2Controller@destroy')->name('recetas.destroy');
+

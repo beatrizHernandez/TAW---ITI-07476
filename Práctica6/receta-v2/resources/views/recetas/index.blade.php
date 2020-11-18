@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('botones')
 	<a href="{{route('recetas.create')}}" class="btn btn-primary mr-2" text-white> Crear receta </a>
 @endsection
@@ -16,15 +17,35 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Pizza</td>
-					<td>Pizzas</td>
-					<td>
-						
-					</td>
-				</tr>
+
+				@foreach ($recetas as $receta)
+                	<tr>
+                    <td>{{$receta->titulo}}</td>
+                    <td>{{$receta->categoria->nombre}}</td>
+
+                    <td>
+                        <eliminar-receta
+                            receta-id={{$receta->id}}> 
+                        </eliminar-receta>                        
+                        <a href="{{ route('recetas.edit', ['receta' => $receta->id]) }}" class="btn btn-dark mr-1 d-block mb-2">Editar</a>
+                        <a href="{{ route('recetas.show', ['receta' => $receta->id]) }}" class="btn btn-success mr-1 d-block mb-2">Ver</a>
+
+                        <form id="formdelete" action="{{ url('/recetas', ['id' => $receta->id]) }}" method="post">
+					        <button type="submit"><a class="btn btn-danger mr-1 d-block mb-2">Eliminar</a></button>
+
+					        @method('delete')
+					        @csrf
+					    </form>
+
+                    </td>
+                </tr>
+                @endforeach 
 			</tbody>
 		</table>
+		
+		<div class="col-12 mt-4 justify-content-center d-flex">
+            {{ $recetas->links()}}
+        </div>  
 	</div>
 
 @endsection

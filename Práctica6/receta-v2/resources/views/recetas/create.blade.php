@@ -29,9 +29,10 @@
 
 							<!-- Directiva de Laravel para poner un msj de error -->
 							@error('titulo')
-								<spam class="invalid-feedback d-block" role="alert">
+								<span class="invalid-feedback d-block" role="alert">
 									<!-- Ponemos un msj generado por Laravel -->
 									<strong>{{$message}}</strong>
+								</span>
 							@enderror
 				</div>
 				<!-- Select de categorias -->
@@ -47,7 +48,7 @@
 							@foreach($categorias as $id => $categoria)
 								<option value="{{$id}}"
 								{{old('categoria')==$id?'selected':''}}
-								>{{$categoria}}</option>
+								>{{$categoria->nombre}}</option>
 							@endforeach
 					</select>
 
@@ -76,7 +77,8 @@
 					@error('preparacion')
 						<span class="invalid-feedback d-block" role="alert">
 						<!-- Poner el msj generado por laravel -->
-						<strong>{{$message}}</strong>
+							<strong>{{$message}}</strong>
+						</span>
 					@enderror
 				</div>
 				<!-- Fin de campo de texto de preparación -->
@@ -95,7 +97,8 @@
 					@error('ingredientes')
 						<span class="invalid-feedback d-block" role="alert">
 						<!-- Poner el msj generado por laravel -->
-						<strong>{{$message}}</strong>
+							<strong>{{$message}}</strong>
+						</span>
 					@enderror
 				</div>
 				<!-- Fin de campo de texto de ingredientes -->
@@ -110,7 +113,8 @@
 					@error('imagen')
 						<span class="invalid-feedback d-block" role="alert">
 						<!-- Poner el msj generado por laravel -->
-						<strong>{{$message}}</strong>
+							<strong>{{$message}}</strong>
+						</span>
 					@enderror
 				</div>
 				<!-- Fin de campo imagen -->
