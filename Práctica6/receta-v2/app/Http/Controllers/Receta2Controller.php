@@ -80,6 +80,11 @@ class Receta2Controller extends Controller
 
         $ruta_imagen = $request['imagen']->store('uploads-recetas', 'public');
 
+        $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(1200, 550);
+
+        $img->save();
+
+
         //Fascade (librerías de laravel)
         /*DB::table('receta2s')->insert([
            'titulo' => $request['titulo'],
@@ -99,9 +104,6 @@ class Receta2Controller extends Controller
         ]);
 
         return redirect()->action('Receta2Controller@index');
-
-        $img = Image::make( public_path("storage/{$ruta_image}"))->fit(1200, 550);
-        $img->save();
 
         //
         /*$receta = new Receta2();
@@ -172,9 +174,10 @@ class Receta2Controller extends Controller
             $ruta_image = $request['imagen']->store('upload-recetas', 'public');
 
             $img = Image::make( public_path("storage/{$ruta_image}"))->fit(1200, 550);
+
             $img->save();
 
-            $receta->imagen = $ruta_image;
+            $receta->imagen = $ruta_image; 
         }
         $receta2->save();
 
@@ -188,12 +191,12 @@ class Receta2Controller extends Controller
      * @param  \App\Receta2  $receta2
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Receta2 $receta2)
+    public function destroy(Receta2 $receta)
     {
         //
-        $this->authorize('delete', $receta2);
+        $this->authorize('delete', $receta);
 
-        $receta2->delete();
+        $receta->delete();
 
         return redirect()->action('Receta2Controller@index'); 
     }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Policies\RecetasPolicy;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        \App\Receta2::class => RecetasPolicy::class,
     ];
 
     /**
@@ -26,5 +28,6 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        
     }
 }

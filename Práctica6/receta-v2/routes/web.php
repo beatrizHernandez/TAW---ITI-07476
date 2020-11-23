@@ -47,3 +47,4 @@ route::put('/recetas/{receta}', 'Receta2Controller@update')->name('recetas.updat
 
 route::delete('/recetas/{receta}', 'Receta2Controller@destroy')->name('recetas.destroy');
 
+route::get('/categorias/{categoria}', 'CategoriaController@show')->name('categorias.show');

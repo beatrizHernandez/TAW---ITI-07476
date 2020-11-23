@@ -83,7 +83,7 @@
 
                     <div class="mt-4">
                     	<p>Imagen actual: </p>
-
+                        <img src="/storage/{{$receta->imagen}}" style="width: 300px" alt="Imagen">
                     </div>
 
                     @error('imagen')

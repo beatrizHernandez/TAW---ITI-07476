@@ -65,12 +65,25 @@ class PerfilController extends Controller
             'biografia' => 'required'
         ]);
 
-        auth()->user()->url = $data['url'];
-         auth()->user()->name = $data['nombre'];
-         auth()->user()->save();
+        if($request['imagen']){
+            $ruta_image = $request['imagen']->store('upload-perfiles', 'public');
 
-         unset($data['url']);
-         unset($data['nombre']);
+            $img = Image::make( public_path("storage/{$ruta_image}"))->fit(1200, 550);
+            $img->save();
+
+            $array_imagen = ['imagen' => $ruta_image];
+        } 
+
+        auth()->user()->url = $data['url'];
+        auth()->user()->name = $data['nombre'];
+        auth()->user()->save();
+
+        unset($data['url']);
+        unset($data['nombre']);
+
+        auth()->user()->perfil()->update(array_merge($data, $array_imagen ?? []));
+
+        return redirect()->action('Receta2Controller@index');
     }
 
     /**
