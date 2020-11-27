@@ -37,7 +37,7 @@
 
                         <p> {{ Str::words(strip_tags($nueva->preparacion), 30) }} </p>
 
-                    <a href=" {{ route('recetas.show', ['receta' => $nueva->id])}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Ver Receta</a>
+                    <a href=" {{ route('recetas.show', ['receta' => $nueva->id])}}" class="btn btn-primary d-block font-weight-bold text-uppercase">Ver receta</a>
                     </div>
                 </div>
             @endforeach

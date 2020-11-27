@@ -16,7 +16,8 @@ class CreateLikeRecetasTable extends Migration
         Schema::create('like_recetas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users'); 
-            $table->foreignId('receta_id')->constrained();
+            $table->foreignId('receta2_id')->constrained();
+            //$table->foreignId('receta_id')->references('id')->on('receta2s');
             $table->timestamps();
         });
     }

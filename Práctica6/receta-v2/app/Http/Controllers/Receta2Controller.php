@@ -133,7 +133,7 @@ class Receta2Controller extends Controller
      * @param  \App\Receta2  $receta2
      * @return \Illuminate\Http\Response
      */
-    public function show(Receta2 $receta2)
+    public function show(Receta2 $receta)
     {
         //
         $like = ( auth()->user() ) ? auth()->user()->meGusta->contains($receta->id) : false;
@@ -190,7 +190,7 @@ class Receta2Controller extends Controller
 
             $img->save();
 
-            $receta->imagen = $ruta_image; 
+            $receta2->imagen = $ruta_image; 
         }
         $receta2->save();
 
