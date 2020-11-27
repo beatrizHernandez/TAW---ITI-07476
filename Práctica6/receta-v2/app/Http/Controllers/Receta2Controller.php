@@ -39,7 +39,16 @@ class Receta2Controller extends Controller
         } else {
             return redirect()->action('HomeController@index');
         }
+    }
 
+    public function search(Request $request)
+    {
+        $busqueda = $request['buscar'];
+
+        $recetas = Receta2::where('titulo', 'like', '%' . $busqueda . '%')->paginate(1);
+        $recetas->appends(['buscar' => $busqueda]);
+
+        return view('busqueda.show', compact('recetas', 'busqueda'));
     }
 
     /**
@@ -127,7 +136,11 @@ class Receta2Controller extends Controller
     public function show(Receta2 $receta2)
     {
         //
+        $like = ( auth()->user() ) ? auth()->user()->meGusta->contains($receta->id) : false;
 
+        $likes = $receta->likes->count();
+
+        return view('recetas.show', compact('receta', 'like', 'likes'));
     }
 
     /**

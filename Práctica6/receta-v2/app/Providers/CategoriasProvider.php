@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use View;
+use App\CategoriaReceta;
 use Illuminate\Support\ServiceProvider;
 
 class CategoriasProvider extends ServiceProvider

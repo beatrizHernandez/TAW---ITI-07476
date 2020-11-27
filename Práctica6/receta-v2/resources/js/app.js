@@ -8,6 +8,8 @@
 
 require('./bootstrap');
 
+
+
 window.Vue = require('vue');
 
 Vue.use(VueSweetalert2);
@@ -27,6 +29,7 @@ Vue.config.ignoredElements = ['trix-editor', 'trix-toolbar']
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('eliminar-receta', require('./components/EliminarReceta.vue').default);
 Vue.component('fecha-receta', require('./components/FechaReceta').default);
+Vue.component('like-button', require('./components/LikeButton').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,3 +40,4 @@ Vue.component('fecha-receta', require('./components/FechaReceta').default);
 const app = new Vue({
     el: '#app',
 });
+

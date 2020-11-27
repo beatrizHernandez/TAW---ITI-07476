@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
 
     public function meGusta() {
-        return $this->belongsToMany(Receta2::class, 'likes_receta');
+        return $this->belongsToMany(Receta2::class, 'like_recetas');
     }
 
     public function getId() {
