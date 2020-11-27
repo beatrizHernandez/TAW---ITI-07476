@@ -87,11 +87,11 @@ class Receta2Controller extends Controller
             'imagen'=>'required|image|',
         ]);
 
-        $ruta_imagen = $request['imagen']->store('uploads-recetas', 'public');
+        $ruta_image = $request['imagen']->store('uploads-recetas', 'public');
 
-        $img = Image::make( public_path("storage/{$ruta_imagen}"))->fit(1200, 550);
+        //$img = Image::make( public_path("storage/{$ruta_image}"))->fit(1200, 550);
 
-        $img->save();
+        //$img->save();
 
 
         //Fascade (librerías de laravel)
@@ -108,7 +108,7 @@ class Receta2Controller extends Controller
             'titulo'=>$request['titulo'],
             'preparacion'=>$request['preparacion'],
             'ingredientes'=>$request['ingredientes'],
-            'imagen'=>$ruta_imagen,
+            'imagen'=>$ruta_image,
             'categoria_id'=>$request['categoria']
         ]);
 
