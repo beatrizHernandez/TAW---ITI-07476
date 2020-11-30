@@ -27,12 +27,15 @@ class Receta2Controller extends Controller
     {
         //
         //return Receta2::get();
-        if(Auth::check()) {
+        //Si el usuario se encuentra logeado
+        if(Auth::check()) { 
+            //auth del user
             $usuario = auth()->user();
 
             $recetas = Receta2::where('user_id', $usuario->id)->paginate(10);
             //print_r($recetas);
-
+            //
+            //vista del index de recetas con las recetas del usuario dentro
             return view('recetas.index')
                 ->with('recetas', $recetas)
                 ->with('usuario', $usuario);
@@ -43,9 +46,12 @@ class Receta2Controller extends Controller
 
     public function search(Request $request)
     {
+        //busqueda en el inico de la página
         $busqueda = $request['buscar'];
 
         $recetas = Receta2::where('titulo', 'like', '%' . $busqueda . '%')->paginate(1);
+        //appends perteneciente al ¿eloquent?
+        //parametro de consultas
         $recetas->appends(['buscar' => $busqueda]);
 
         return view('busqueda.show', compact('recetas', 'busqueda'));
@@ -89,10 +95,10 @@ class Receta2Controller extends Controller
 
         $ruta_image = $request['imagen']->store('uploads-recetas', 'public');
 
+        //GENERA ERROR DE INTERVENCIÓN
         //$img = Image::make( public_path("storage/{$ruta_image}"))->fit(1200, 550);
 
         //$img->save();
-
 
         //Fascade (librerías de laravel)
         /*DB::table('receta2s')->insert([
@@ -135,11 +141,13 @@ class Receta2Controller extends Controller
      */
     public function show(Receta2 $receta)
     {
-        //
+        //likes de los usuarios dentro de una receta
+        //contains() pertencece a una interacción de eloquent con la tabla
         $like = ( auth()->user() ) ? auth()->user()->meGusta->contains($receta->id) : false;
-
+        //método count() para determinar si existen registros que coincidan con la restricción
         $likes = $receta->likes->count();
 
+        //Vista
         return view('recetas.show', compact('receta', 'like', 'likes'));
     }
 
@@ -151,7 +159,7 @@ class Receta2Controller extends Controller
      */
     public function edit(Receta2 $receta2)
     {
-        //
+        //edición de una receta
         $this->authorize('view', $receta2);
 
         $categorias = CategoriaReceta::all('id', 'nombre');
@@ -168,9 +176,10 @@ class Receta2Controller extends Controller
      */
     public function update(Request $request, Receta2 $receta2)
     {
-        //
+        //actualización de los datos de la receta en base a su previa edición
         $this->authorize('update', $receta2);
 
+        //validación de todos los datos
         $data = $request->validate([
             'titulo'=>'required|min:6',
             'categoria'=>'required',
@@ -185,9 +194,8 @@ class Receta2Controller extends Controller
 
         if(request('imagen')){
             $ruta_image = $request['imagen']->store('upload-recetas', 'public');
-
+            //storage de la imagen de la receta
             $img = Image::make( public_path("storage/{$ruta_image}"))->fit(1200, 550);
-
             $img->save();
 
             $receta2->imagen = $ruta_image; 
@@ -206,11 +214,11 @@ class Receta2Controller extends Controller
      */
     public function destroy(Receta2 $receta)
     {
-        //
+        //función de borrado de alguna receta
         $this->authorize('delete', $receta);
 
         $receta->delete();
-
+        //redirección al indez de este mismo controlador
         return redirect()->action('Receta2Controller@index'); 
     }
 }

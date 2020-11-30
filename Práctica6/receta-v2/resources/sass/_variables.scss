@@ -149,7 +149,7 @@ trix-editor {
             position: absolute;
             transition: transform .5s ease;
         }
-        /* &:before {
+         &:before {
           left: 0;
           bottom: 0;
           width: 100%;
@@ -159,7 +159,7 @@ trix-editor {
         }
         &:hover:before {
           transform:  translateX(0);
-        }*/
+        }
       }
 }
 

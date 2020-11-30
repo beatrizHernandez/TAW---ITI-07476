@@ -13,6 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        //migración de la tabla de usuarios con los campos que piden ser llenados
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -32,6 +33,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        //si el esquema ya existe se quita 
         Schema::dropIfExists('users');
     }
 }

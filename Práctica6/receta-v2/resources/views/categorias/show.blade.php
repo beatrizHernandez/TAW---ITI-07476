@@ -1,8 +1,9 @@
 @extends('layouts.app')
-
+<!-- show de las categorías que se encuentran -->
 @section('content')
     <div class="container">
         <h2 class="titulo-categoria text-uppercase mt-5 mb-4">
+            <!-- Modelo por nombre o título de la receta -->
             CategoriaReceta: {{$categoria->nombre}}
         </h2>
         <div class="row">

@@ -13,6 +13,7 @@ class CreatePerfilsTable extends Migration
      */
     public function up()
     {
+        //migración de la tabla de usuarios con los campos que piden ser llenados
         Schema::create('perfils', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');

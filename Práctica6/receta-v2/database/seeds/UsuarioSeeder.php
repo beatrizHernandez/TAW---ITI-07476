@@ -16,6 +16,7 @@ class UsuarioSeeder extends Seeder
     public function run()
     {
         //
+         //Insertar datos por default a la tabla users
         DB::table('users')->insert([
             'name'=>'Prueba usuario 1',
             'email'=>'correo@correo.com',

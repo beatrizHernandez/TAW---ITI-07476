@@ -13,10 +13,10 @@ class InicioController extends Controller
     public function index()
     {        
        
-        $votadas = Receta2::withCount('likes')->orderBy('likes_count', 'desc')->take(3)->get();
-
-        $nuevas = Receta2::latest()->take(5)->get();
-
+        //$votadas = Receta2::withCount('likes')->orderBy('likes_count', 'desc')->take(3)->get();
+        //Nuevas recetas dentro del modelo (al menos 3)
+        $nuevas = Receta2::latest()->take(3)->get();
+        //Todas las recetas
         $categorias = CategoriaReceta::all();
 
         $recetas = [];

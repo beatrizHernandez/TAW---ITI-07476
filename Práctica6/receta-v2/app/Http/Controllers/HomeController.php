@@ -13,6 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        //Filtrado de petición HTTP para la autenticación
         $this->middleware('auth');
     }
 

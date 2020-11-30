@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/', 'InicioController@index')->name('inicio.index');
+
 //Ruta para mostrar un controlador que retorna un string
 //Como se hacía en versión laravel 6 y 7
 //route::get('/', 'RecetaController@hola');
@@ -51,9 +53,10 @@ route::get('/categorias/{categoria}', 'CategoriaController@show')->name('categor
 
 route::post('/recetas/{receta}', 'LikesController@update')->name('likes.update');
 
-Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');
+/* Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');
+
 Route::get('/perfiles/{perfil}/edit', 'PerfilController@edit')->name('perfiles.edit');
 
-Route::put('/perfiles/{perfil}', 'PerfilController@update')->name('perfiles.update');
+Route::put('/perfiles/{perfil}', 'PerfilController@update')->name('perfiles.update'); */
 
 Route::get('/buscar', 'Receta2Controller@search')->name('buscar.show');

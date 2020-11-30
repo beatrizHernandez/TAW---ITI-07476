@@ -11,11 +11,9 @@
                 @endphp
 
                 <p class="text-primary fecha font-wight-bold">
-                    <fecha-receta
-                        fecha="{{$fecha}}"
-                    ></fecha-receta>
+                    <fecha-receta fecha="{{$fecha}}"></fecha-receta>
                 </p>                      
-                <p> {{count($receta->likes)}} les gustó </p>               
+                <p> A {{count($receta->likes)}} les gustó esta receta </p>               
             </div>
             <p class="card-text">
                 {{Str::words(strip_tags( $receta->preparacion ), 20, '...')}}

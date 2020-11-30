@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+//Modelo del usuario
 class User extends Authenticatable
 {
     use Notifiable;
@@ -37,6 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //el método o función boot se usa para cargar todos los elementos que
+    //no se ponen el el register
     protected static function boot()
     {
         parent::boot();
@@ -47,14 +50,17 @@ class User extends Authenticatable
     }
 
     public function recetas() {
+        //Que tantas recetas ha creado este usuario
         return $this->hasMany(Receta2::class);
     }
 
     public function perfil() {
+        //cuantos perfiles tiene
         return $this->hasOne(Perfil::class);
     }
 
     public function meGusta() {
+        //cuantos favoritos ha dado a recetas
         return $this->belongsToMany(Receta2::class, 'like_recetas');
     }
 

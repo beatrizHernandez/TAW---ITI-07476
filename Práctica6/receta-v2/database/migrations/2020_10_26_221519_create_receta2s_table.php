@@ -21,7 +21,7 @@ class CreateReceta2sTable extends Migration
             $table->timestamps();
         });
 
-
+        //migración de la tabla de recetas con los campos que piden ser llenados
         Schema::create('receta2s', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
