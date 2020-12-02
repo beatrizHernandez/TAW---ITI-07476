@@ -2,8 +2,7 @@
 
 @section('botones')
 	<a href="{{route('recetas.create')}}" class="btn btn-primary mr-2" text-white> Crear receta </a>
-	<!-- <a href={{route('perfiles.edit', ['perfil' => Auth::user()])}} class="btn btn-outline-success mr-2">Editar Perfil</a>
-    <a href={{route('perfiles.show', ['perfil' => Auth::user()])}} class="btn btn-outline-info mr-2">Ver Perfil</a> -->
+	
 @endsection
 
 @section('content')

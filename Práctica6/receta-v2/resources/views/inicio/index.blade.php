@@ -8,10 +8,10 @@
 <!-- Sección hero por default dentro de HTML 
 por tanto hero-categorias-->
 @section('hero')
-    <div class="hero-categorias">
+    <div class="hero-categorias ">
             <form action="{{ route('buscar.show')}}" class="container h-100">
                 <div class="row h-100 align-items-center">
-                    <div class="col-md-4 texto-buscar">
+                    <div class="col-md-12 texto-buscar text-center">
                         <p class="display-4">Recetario con variedad</p>
                         <input type="search" name="buscar" placeholder="Buscar..." class="form-control">
                     </div>
