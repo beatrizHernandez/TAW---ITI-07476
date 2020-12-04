@@ -10,7 +10,7 @@ Debe redirigir a la receta pero aun no se prueba la funcionalidad de esto...-->
             @foreach ($recetas as $receta)
             <!-- El include de abajo hace referencia al "index" de receta dentro de la carpeta
                 ¿asociado con los perfiles?-->
-                @include('usuario.receta')
+               
             @endforeach
         </div>
         <div class="d-flex justify-content-center mt-5">
