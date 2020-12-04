@@ -19,10 +19,11 @@ tiene lapsos donde funciona correctamente pero de un momento a otro vuelve a mos
 				@csrf
                 @method('PUT')
                 <div class="form-group">
+                    <!-- Título de la receta con el que esta registrada en la BD -->
                 	<label for="titulo">Titulo de receta</label>
                 	<input id="titulo" type="text" name="titulo" placeholder="Titulo Receta" class="form-control @error('titulo') is-invalid @enderror"
                     value="{{ $receta->titulo}}">
-
+                    <!-- En caso de haber error -->
                     @error('titulo')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -30,12 +31,13 @@ tiene lapsos donde funciona correctamente pero de un momento a otro vuelve a mos
                     @enderror
 
                 </div>
-
+                <!-- Categoría donde se encuentra almacenada la receta -->
                 <div class="form-group">
                 	<label for="categoria">Categoría</label>
                 	<select id="categoria" name="categoria" class="form-control @error('categoria') is-invalid @enderror" >
                 		<option value="">--Seleccione--</option>
-
+                        <!-- For para las diferentes categirías 
+                            Por default aparecerá el "seleccione" cuando recién se ingrese -->
                 		@foreach ($categorias as $categoria )
                             <option 
                                 value="{{ $categoria->id }}" 
@@ -44,19 +46,19 @@ tiene lapsos donde funciona correctamente pero de un momento a otro vuelve a mos
                         @endforeach
 
                 	</select>
-
+                    <!-- Como el previo, aparecerá error en caso de no seleccionar una categoría -->
                 	@error('categoria')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
                         </span>
                     @enderror
                 </div>
-
+                <!-- Div de preparacion de la receta para editar la información que contiene -->
                 <div class="form-group mt-3">
                 	<label for="preparacion">Preparación</label>
                 	<input type="hidden" name="preparacion" id="preparacion" value="{{$receta->preparacion}}">
                 	<trix-editor class="form-control @error('preparacion') is-invalid @enderror" input="preparacion"></trix-editor>
-
+                    <!-- Como el previo, aparecerá error en caso de dejar este espacio en blanco -->
                 	@error('preparacion')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -64,12 +66,12 @@ tiene lapsos donde funciona correctamente pero de un momento a otro vuelve a mos
                      @enderror
 
                 </div>
-
+                <!-- Div de ingredientes de la receta para editar la información que contiene -->
                 <div class="form-group mt-3">
                 	<label for="ingredientes">Ingredientes</label>
                 	<input type="hidden" id="ingredientes"   name="ingredientes" value="{{$receta->ingredientes}}">
                 	<trix-editor class="form-control @error('ingredientes') is-invalid @enderror" input="ingredientes"></trix-editor>
-
+                    <!-- Como el previo, aparecerá error en caso de dejar este espacio en blanco -->
                 	@error('ingrendientes')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
@@ -77,11 +79,11 @@ tiene lapsos donde funciona correctamente pero de un momento a otro vuelve a mos
                     @enderror
 
                 </div>
-
+                <!-- Edición de la imagen de la receta -->
                 <div class="form-group mt-3">
                 	<label for="imagen">Elige la imagen</label>
                     <input id="imagen" type="file" name="imagen" class="form-group @error('imagen') is-invalid @enderror">
-
+                    <!-- Muestra de la imagen actual -->
                     <div class="mt-4">
                     	<p>Imagen actual: </p>
                         <img src="/storage/{{$receta->imagen}}" style="width: 300px" alt="Imagen">

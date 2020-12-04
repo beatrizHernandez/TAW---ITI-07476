@@ -54,7 +54,12 @@
 
             @if (count($usuario->meGusta) > 0)
                 <ul class="list-group">
-                                    
+                     @foreach ($usuario->meGusta as $receta)
+                    <li class="list-group-item d-flex justify-content-between alignt-items-center">
+                        <p>{{$receta->titulo}}</p>
+                        <a class="btn btn outline-success text-uppercase" href="{{ route('recetas.show', ['receta' => $receta->id])}}">Ver</a>
+                    </li>
+                    @endforeach  
                 <!-- En caso de no haber mninguna marcada como favorita -->
                 </ul> 
                 @else

@@ -14,7 +14,8 @@ a su vista anterior del listado general -->
         <!-- Imagen asociada con la receta creada por el usuario -->
         <div class="imagen-receta left">
             
-            <img src="/storage/{{$receta->imagen}}" alt="imagen" class="w-50">
+             <img src="{{ Storage::url("{$receta->imagen}") }}" alt="imagen" class="w-50">
+
         </div>
 
 		<div class="receta-meta right">
