@@ -41,3 +41,11 @@ const app = new Vue({
     el: '#app',
 });
 
+
+$(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+});

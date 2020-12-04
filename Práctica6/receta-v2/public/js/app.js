@@ -1912,13 +1912,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['recetaId'],
   mounted: function mounted() {//console.log('Eliminando', this.recetaId)
+    //console.log('Prueba eliminando, this.recetaId')
   },
   methods: {
     eliminarReceta: function eliminarReceta() {
@@ -1929,27 +1926,28 @@ __webpack_require__.r(__webpack_exports__);
         text: "Confirmación...",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#19D024',
+        cancelButtonColor: '#DF1414',
         confirmButtonText: 'Sí',
         cancelButtonText: 'No'
       }).then(function (result) {
         if (result.value) {
           var params = {
             id: _this.recetaId
-          }; //Enviar peticion al servidor
+          }; //Enviar peticion previa al servidor
+          //Dentro de servidor se llevará a cabo el borrado
 
           axios.post("/recetas/".concat(_this.recetaId), {
             params: params,
             _method: 'delete'
           }).then(function (respuesta) {
-            console.log(respuesta);
+            console.log(respuesta); //Sweet alert de jquery
 
             _this.$swal({
               title: 'Receta eliminada.',
               text: 'Se eliminó la receta',
               icon: 'success'
-            }); //Eliminar receta del DOM
+            }); //Eliminar receta 
 
 
             _this.$el.parentNode.parentNode.parentNode.removeChild(_this.$el.parentNode.parentNode);
@@ -44505,7 +44503,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("input", {
-    staticClass: "btn btn-danger mr-1 d-block mb-2 w-100",
+    staticClass: "btn btn-danger ",
     attrs: { type: "submit", value: "Eliminar" },
     on: { click: _vm.eliminarReceta }
   })
@@ -44610,7 +44608,9 @@ var render = function() {
       on: { click: _vm.likeReceta }
     }),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.cantidadLikes) + " les gusta esta receta")])
+    _c("p", [
+      _vm._v("A " + _vm._s(_vm.cantidadLikes) + " les gusta esta receta")
+    ])
   ])
 }
 var staticRenderFns = []
@@ -56895,6 +56895,11 @@ Vue.component('like-button', __webpack_require__(/*! ./components/LikeButton */ 
 
 var app = new Vue({
   el: '#app'
+});
+$(document).ready(function () {
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar').toggleClass('active');
+  });
 });
 
 /***/ }),

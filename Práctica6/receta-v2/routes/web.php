@@ -53,10 +53,10 @@ route::get('/categorias/{categoria}', 'CategoriaController@show')->name('categor
 
 route::post('/recetas/{receta}', 'LikesController@update')->name('likes.update');
 
-/* Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');
+Route::get('/perfiles/{perfil}', 'PerfilController@show')->name('perfiles.show');
 
 Route::get('/perfiles/{perfil}/edit', 'PerfilController@edit')->name('perfiles.edit');
 
-Route::put('/perfiles/{perfil}', 'PerfilController@update')->name('perfiles.update'); */
+Route::put('/perfiles/{perfil}', 'PerfilController@update')->name('perfiles.update'); 
 
 Route::get('/buscar', 'Receta2Controller@search')->name('buscar.show');

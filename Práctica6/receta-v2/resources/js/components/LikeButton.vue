@@ -1,7 +1,7 @@
 <template>
     <div>
         <span class="like-btn" @click="likeReceta" :class="{ 'like-active' : isActive }"></span>    
-        <p>{{cantidadLikes}} les gusta esta receta</p>
+        <p>A {{cantidadLikes}} les gusta esta receta</p>
     </div>
 </template>
 

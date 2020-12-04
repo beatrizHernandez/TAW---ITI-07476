@@ -5,16 +5,17 @@
 @endsection
 
 @section('botones')
-    <a href={{route('recetas.index')}} class="btn btn-primary mr-2 text-white">Volver</a>
-
+    <a href="{{route('recetas.index')}}" class="btn btn-primary mr-2" text-white> Volver </a>
 @endsection
 
+<!-- Sección de edicion de la informacion de la receta aunque en realidad, no esta funcionando al 100%
+tiene lapsos donde funciona correctamente pero de un momento a otro vuelve a mostrar el error -->
 @section('content')
 	<h2 class="text-center mb-5">Editar receta</h2>
 
 	<div class="row justify-content-center mt-5">
 		<div class="col-md-8">
-			<form method="POST" action={{route('recetas.update', ['receta' => $receta->id])}} enctype="multipart/form-data" novalidate>
+			<form method="POST" action="{{route('recetas.update', ['receta' => $receta->id])}}" enctype="multipart/form-data" novalidate>
 				@csrf
                 @method('PUT')
                 <div class="form-group">

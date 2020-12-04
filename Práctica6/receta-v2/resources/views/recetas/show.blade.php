@@ -1,48 +1,53 @@
 @extends('layouts.app')
 
-@section('content')
-	<article class="contenido-receta bg-white p-5 shadow">
-		<h1 class="text-center mb-4">{{$receta->titulo}}</h1>
+<!-- Botón de volver al dar clikc al botón de "ver" en cualquier receta, este permite volver 
+a su vista anterior del listado general -->
+@section('botones')
+    <a href="{{route('recetas.index')}}" class="btn btn-primary mr-2" text-white> Volver </a>
+@endsection
 
-        <div class="imagen-receta">
-            <img src="/storage/{{$receta->imagen}}" alt="imagen" class="w-100">
+@section('content')
+	<div class="contenido-receta bg-white">
+        <!-- Título de la receta que el usuario le haya dado-->
+		<h1 class="text-center text-white bg-dark mb-4">{{$receta->titulo}}</h1>
+
+        <!-- Imagen asociada con la receta creada por el usuario -->
+        <div class="imagen-receta left">
+            <img src="/storage/{{$receta->imagen}}" alt="imagen" class="w-50">
         </div>
 
-		<div class="receta-meta mt-3">
+		<div class="receta-meta right">
 			<p>
-				<span class="font-weight-bold text-primary">Escrito en:</span>
+                <!-- Categoría a la que pertenece -->
+				<span class="font-weight-bold text-dark">Categoría:</span>
 				<a class="text-dark" href="{{ route('categorias.show', ['categoria' => $receta->categoria->id])}}">{{$receta->categoria->nombre}}</a>                    
             </p>
 
             <p>
-        	   <span class="font-weight-bold text-primary">Autor:</span>
+                <!-- Usuario autor de la receta
+                    en realidad, terminó siendo no tan relevante debido a que no hay funcionalidad de los perfiles
+                    dentro del proyecto... -->
+        	   <span class="font-weight-bold text-dark">Escrita por:</span>
         	   <a class="text-dark" href="{{ route('perfiles.show', ['perfil' => $receta->autor->id])}}">{{$receta->autor->name}}</a>
             </p> 
 
-            <p>
-        	   <span class="font-weight-bold text-primary">Fecha creación:</span>
-
-        	   @php
-        		  $fecha = $receta->created_at
-        	   @endphp
-
-        	   <fecha-receta fecha="{{$fecha}}"></fecha-receta>
-            </p>
-
+            <!-- Ingredientes usados, especificados por el usuario -->
             <div class="ingredientes">
-            	<h2 class="my-3 text-primary">Ingredientes</h2>
+            	<span class="font-weight-bold text-dark">Ingredientes: </span>
             	{!! $receta->ingredientes !!}
             </div>
 
+            <!-- Preparación de la receta, también especificada por el usuario que la creó -->
             <div class="preparacion">
-            	<h2 class="my-3 text-primary">Preparación</h2>
+            	<span class="font-weight-bold text-dark">Preparación: </span>
             	{!! $receta->preparacion !!}
             </div>
 
-            <div class="justify-content-center row text-center">
+            <!-- Botón de like de la receta (se añade a los favoritos del usuario)
+                Modalidad descubierta ya con herramienta integrada, es decir, no tuvo que ser creada desde cero -->
+            <div class="justify-content-center text-center">
                 <like-button receta-id="{{$receta->id}}" like="{{$like}}" likes="{{$likes}}"></like-button>
-            </div> 
+            </div>
         </div>
-
-	</article>
+	</div>
 @endsection

@@ -12,6 +12,8 @@
             @endforeach
         </div> 
         <div class="d-flex justify-content-center mt-5">
+            <!-- El método links() muestra los enlaces al resto de las páginas
+             y cada uno de estos enlaces contiene la paginate() adecuada -->
             {{ $recetas->links() }}
         </div>
     </div>

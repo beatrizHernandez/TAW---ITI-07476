@@ -157,10 +157,10 @@ class Receta2Controller extends Controller
      * @param  \App\Receta2  $receta2
      * @return \Illuminate\Http\Response
      */
-    public function edit(Receta2 $receta2)
+    public function edit(Receta2 $receta)
     {
         //edición de una receta
-        $this->authorize('view', $receta2);
+        $this->authorize('view', $receta);
 
         $categorias = CategoriaReceta::all('id', 'nombre');
 
@@ -174,10 +174,10 @@ class Receta2Controller extends Controller
      * @param  \App\Receta2  $receta2
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receta2 $receta2)
+    public function update(Request $request, Receta2 $receta)
     {
         //actualización de los datos de la receta en base a su previa edición
-        $this->authorize('update', $receta2);
+        $this->authorize('update', $receta);
 
         //validación de todos los datos
         $data = $request->validate([
@@ -187,10 +187,10 @@ class Receta2Controller extends Controller
             'ingredientes'=>'required'
         ]);
 
-        $receta2->titulo = $request['titulo'];
-        $receta2->preparacion = $request['preparacion'];
-        $receta2->ingredientes = $request['ingredientes'];
-        $receta2->categoria_id = $request['categoria'];
+        $receta->titulo = $request['titulo'];
+        $receta->preparacion = $request['preparacion'];
+        $receta->ingredientes = $request['ingredientes'];
+        $receta->categoria_id = $request['categoria'];
 
         if(request('imagen')){
             $ruta_image = $request['imagen']->store('upload-recetas', 'public');
@@ -198,9 +198,9 @@ class Receta2Controller extends Controller
             $img = Image::make( public_path("storage/{$ruta_image}"))->fit(1200, 550);
             $img->save();
 
-            $receta2->imagen = $ruta_image; 
+            $receta->imagen = $ruta_image; 
         }
-        $receta2->save();
+        $receta->save();
 
         return redirect()->action('Receta2Controller@index');
 
